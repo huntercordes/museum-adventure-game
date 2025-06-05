@@ -1,0 +1,8 @@
+.page {
+  background-color: #022f1f;
+  height: 100vh;
+  overflow: hidden; /* prevent scrolling */
+  display: flex;
+  flex-direction: column;
+}
+

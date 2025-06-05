@@ -1,0 +1,25 @@
+/* src/styles/ClueButton.module.css */
+.clueButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  margin: 8px 0;
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  font-size: 18px;
+}

@@ -1,0 +1,22 @@
+.container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.clueBox {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.clue {
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid black;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
