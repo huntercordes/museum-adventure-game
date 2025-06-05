@@ -28,8 +28,13 @@ const StoryGamePage = () => {
       <div className={styles.clueBox}>
         <ClueButton type="name" progress={progress.name} icon="🌍" />
         <ClueButton type="quiz" progress={progress.quiz} icon="❓" />
-        <ClueButton type="sound" progress={progress.sound} icon="👥" />
-      </div>
+<ClueButton
+  type="sound"
+  progress={progress.sound}
+  icon="👥"
+  onClick={() => navigate('/story-game/sound')}
+/>     
+ </div>
     </div>
   );
 };
