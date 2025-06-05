@@ -15,7 +15,7 @@ export default function SoundQuestionPlayer({ soundUrl, onPlayClick }) {
     <div className={styles.container}>
       <audio ref={audioRef} src={soundUrl} />
       <button className={styles.playButton} onClick={handlePlay}>
-        ▶️ Play Sound
+        ▶️ Play Janek Sound
       </button>
     </div>
   );
