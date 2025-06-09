@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '../styles/StoryGamePage.module.css';
 import ClueButton from '../components/ClueButton';
 import { getDoc, doc } from 'firebase/firestore';
@@ -8,6 +9,7 @@ import { useAuth } from '../hooks/useAuth'; // Assuming you have a custom auth h
 const StoryGamePage = () => {
   const { user } = useAuth(); // Get current user from context
   const [progress, setProgress] = useState({ name: 0, quiz: 0, sound: 0 });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProgress = async () => {
@@ -27,16 +29,22 @@ const StoryGamePage = () => {
       <h1>Pick your clue</h1>
       <div className={styles.clueBox}>
         <ClueButton type="name" progress={progress.name} icon="🌍" />
-        <ClueButton type="quiz" progress={progress.quiz} icon="❓" />
-<ClueButton
-  type="sound"
-  progress={progress.sound}
-  icon="👥"
-  onClick={() => navigate('/story-game/sound')}
-/>     
- </div>
+        <ClueButton
+          type="quiz"
+          progress={progress.quiz}
+          icon="❓"
+          onClick={() => navigate('/regular-quiz')}
+        />
+        <ClueButton
+          type="sound"
+          progress={progress.sound}
+          icon="👥"
+          onClick={() => navigate('/story-game/sound')}
+        />
+      </div>
     </div>
   );
 };
+
 
 export default StoryGamePage;
