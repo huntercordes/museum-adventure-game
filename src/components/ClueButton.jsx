@@ -2,19 +2,37 @@ import React from 'react';
 import styles from '../styles/ClueButton.module.css';
 import { useNavigate } from 'react-router-dom';
 
-const ClueButton = ({ type, progress, icon }) => {
+const ClueButton = ({ type, progress, icon, biome, onClick }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate(`/story-game/${type}`);
   };
 
+  // Capitalize and match label
+  const getLabel = () => {
+    switch (type) {
+      case 'name':
+        return 'Name';
+      case 'quiz':
+        return 'Fun Facts Quiz';
+      case 'sound':
+        return 'Sounds';
+      default:
+        return 'Clue';
+    }
+  };
+
   return (
-    <button className={styles.clue} onClick={handleClick}>
-      {type === 'name' && 'Name'}
-      {type === 'quiz' && 'Fun Facts Quiz'}
-      {type === 'sound' && 'Sounds'}
-      <span>{progress}/3 {icon}</span>
+    <button
+      className={`${styles.clue} ${biome ? styles[biome] : ''}`}
+      onClick={onClick || handleClick}
+      aria-label={`${getLabel()} clue - ${progress} of 3`}
+    >
+      <span>{getLabel()}</span>
+      <span className={`${styles.progressSpacing} ${styles.progress}`}>
+        {progress}/3 <span className={styles.icon}>{icon}</span>
+      </span>
     </button>
   );
 };
