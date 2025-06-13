@@ -25,24 +25,29 @@ const StoryGamePage = () => {
   }, [user]);
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.pageTitle}>Pick your clue</h1>
-      <div className={styles.clueBox}>
-        <ClueButton type="name" progress={progress.name} icon="🌍" />
-        <ClueButton
-          type="quiz"
-          progress={progress.quiz}
-          icon="❓"
-          onClick={() => navigate('/regular-quiz')}
-        />
-        <ClueButton
-          type="sound"
-          progress={progress.sound}
-          icon="👥"
-          onClick={() => navigate('/story-game/sound')}
-        />
+    <main className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.pageTitle}>Pick your clue</h1>
+        <h2 className={styles.subtitle}>What will be your first hint?</h2>
       </div>
-    </div>
+      <div className={styles.clueSection}>
+        <div className={styles.clueBox}>
+          <ClueButton type="name" progress={progress.name} icon="🌍" />
+          <ClueButton
+            type="quiz"
+            progress={progress.quiz}
+            icon="❓"
+            onClick={() => navigate('/regular-quiz')}
+          />
+          <ClueButton
+            type="sound"
+            progress={progress.sound}
+            icon="👥"
+            onClick={() => navigate('/story-game/sound')}
+          />
+        </div>
+      </div>
+    </main>
   );
 };
 

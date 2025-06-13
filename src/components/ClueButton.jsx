@@ -15,7 +15,7 @@ const ClueButton = ({ type, progress, icon, biome, onClick }) => {
       case 'name':
         return 'Name';
       case 'quiz':
-        return 'Fun Facts Quiz';
+        return 'Fun Facts ';
       case 'sound':
         return 'Sounds';
       default:

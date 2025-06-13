@@ -1,43 +1,41 @@
-/* StoryGamePage.module.css */
+@import url('https://fonts.googleapis.com/css2?family=AU+Passata:wght@400;700&display=swap');
 
-/*-----------------------------------------------
-  Base Reset
------------------------------------------------*/
+
 html, body {
   margin: 0;
   padding: 0;
+  font-family: 'AU Passata', Georgia, serif;
 }
 
-/*-----------------------------------------------
-  Page Container & Background
------------------------------------------------*/
 .container {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;       /* fill full height */
+  background: 
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)),
+    url('../assets/background.png') center/cover no-repeat;
+  color: white;
+}
+
+.header {
   padding: 2rem;
   text-align: center;
-  background: url('../assets/background.png') center/cover no-repeat;
 }
 
-/*-----------------------------------------------
-  Headings
------------------------------------------------*/
 .pageTitle {
-  font-family: 'AU Passata', Georgia, serif;
-  font-size: 2.5rem;
+  font-size: 3.25rem;
   font-weight: 700;
   color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
 .subtitle {
-  font-size: 1rem;
+  font-size: 1.45rem;
+  font-weight: 400;
   color: #f0f0f0;
   margin-bottom: 2rem;
 }
 
-/*-----------------------------------------------
-  Progress Bar (if used)
------------------------------------------------*/
 .progressWrapper {
   display: flex;
   align-items: center;
@@ -68,32 +66,34 @@ html, body {
   width: var(--progress, 0%);
 }
 
-/*-----------------------------------------------
-  Clue Buttons Wrapper
------------------------------------------------*/
+.clueSection {
+  flex: 1;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  padding-bottom: 25vh;
+}
+
 .clueBox {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  margin: 2rem auto 0;
+  gap: 3rem;
 }
 
-/*-----------------------------------------------
-  Individual Clue Button
------------------------------------------------*/
 .clue {
+  font-family: 'AU Passata', Georgia, serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 320px;
+  max-width: 400px;
   background: rgba(255, 255, 255, 0.8);
   border: 2px solid rgba(0, 0, 0, 0.2);
-  border-radius: 1rem;
-  padding: 1rem 1.5rem;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.125rem;
+  border-radius: 1.5rem;
+  padding: 1.55rem 3.475rem;
+  font-size: 1.325rem;
+  font-weight: 600;
   color: #222222;
 }
 
@@ -101,9 +101,6 @@ html, body {
   margin: 0 0.5rem;
 }
 
-/*-----------------------------------------------
-  Biome-specific Variants (optional)
------------------------------------------------*/
 .clue.jungle {
   background-color: #eef7ed;
   border-color: #4caf50;
