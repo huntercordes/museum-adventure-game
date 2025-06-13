@@ -26,7 +26,7 @@ const StoryGamePage = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Pick your clue</h1>
+      <h1 className={styles.pageTitle}>Pick your clue</h1>
       <div className={styles.clueBox}>
         <ClueButton type="name" progress={progress.name} icon="🌍" />
         <ClueButton

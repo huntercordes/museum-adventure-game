@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/ClueButton.module.css';
+import styles from '../styles/StoryGamePage.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const ClueButton = ({ type, progress, icon, biome, onClick }) => {
