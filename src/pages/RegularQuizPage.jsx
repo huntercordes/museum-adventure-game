@@ -5,19 +5,19 @@ import styles from '../styles/RegularQuizPage.module.css';
 
 const quizData = [
   {
-    question: "What is the largest biome on Earth?",
-    options: ["Desert", "Ocean", "Rainforest"],
-    answer: "Ocean",
+    question: "How do lions typically live?",
+    options: ["In packs", "In prides", "Alone"],
+    answer: "In prides",
   },
   {
-    question: "Which biome has the most biodiversity?",
-    options: ["Tundra", "Rainforest", "Grassland"],
-    answer: "Rainforest",
+    question: "On which continent primarily do toucans live?",
+    options: ["Africa", "South America", "Europe"],
+    answer: "South America",
   },
   {
-    question: "Which biome is known for very little rainfall?",
-    options: ["Desert", "Forest", "Savanna"],
-    answer: "Desert",
+    question: "What do narwhals use their long tusk for?",
+    options: ["Fighting", "Eating", "Sensing"],
+    answer: "Sensing",
   },
 ];
 
