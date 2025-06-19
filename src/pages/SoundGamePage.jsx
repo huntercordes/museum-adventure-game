@@ -68,7 +68,10 @@ export default function SoundGamePage() {
 
   return (
     <div className={styles.pageContainer}>
-      {/* Otázka na zelenom gradiente */}
+      {/* Move BackButton here so it’s outside the frosted card */}
+      <BackButton onClick={() => navigate('/story-game')} />
+
+      {/* Header */}
       <div className={styles.header}>
         <h1>
           {soundData[current].question}
@@ -76,32 +79,27 @@ export default function SoundGamePage() {
         </h1>
       </div>
 
-      {/* Biela karta */}
+      {/* Frosted-glass card */}
       <div className={styles.card}>
-        <BackButton onClick={() => navigate('/story-game')} />
-
-        <div className={styles.cardBody}>
-          {/* Nový text v karte */}
-          <div className={styles.instruction}>
-            <p>Can you guess who made that noise?</p>
-            <p>Tap here to play sound</p>
-          </div>
-
-          <SoundQuestionPlayer
-            soundUrl={soundData[current].sound}
-            onPlayClick={handlePlay}
-          />
-
-          <AnswerOptions
-            options={soundData[current].options}
-            selected={selected}
-            onSelect={handleAnswer}
-          />
-
-          {feedback && <p className={styles.feedback}>{feedback}</p>}
-
-          <ProgressBar current={progress} total={soundData.length} />
+        <div className={styles.instruction}>
+          <p>Can you guess who made that noise?</p>
+          <p>Tap here to play sound</p>
         </div>
+
+        <SoundQuestionPlayer
+          soundUrl={soundData[current].sound}
+          onPlayClick={handlePlay}
+        />
+
+        <AnswerOptions
+          options={soundData[current].options}
+          selected={selected}
+          onSelect={handleAnswer}
+        />
+
+        {feedback && <p className={styles.feedback}>{feedback}</p>}
+
+        <ProgressBar current={progress} total={soundData.length} />
       </div>
     </div>
   );

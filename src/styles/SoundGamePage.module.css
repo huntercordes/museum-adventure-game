@@ -1,194 +1,97 @@
+/* SoundGamePage.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  background-color: #2e4a2050;
+
+  --clr-primary: #00382E;
+  --clr-card-bg: rgba(255, 255, 255, 0.85);
+  --frost-radius: 24px;
+  --frost-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  --font-heading: 'Poppins', sans-serif;
+}
 
 .pageContainer {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10vh;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  background-color: #DDEAC1 ;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 10vh 1rem 2rem;
+  background: url('/path/to/your/mountain.jpg') center/cover no-repeat fixed;
+  font-family: var(--font-heading);
+  color: var(--clr-primary);
   position: relative;
 }
 
-
 .header {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   text-align: center;
-  color: #000000;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 .header h1 {
   margin: 0;
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 700;
+  color: var(--clr-primary);
 }
 .header span {
-  font-size: 1.5rem;
-  opacity: 0.9;
+  font-size: 1.2rem;
+  opacity: 0.8;
   margin-left: 0.5rem;
 }
 
-/* biely box s tieňom */
 .card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  background: var(--clr-card-bg);
+  border-radius: var(--frost-radius);
+  box-shadow: var(--frost-shadow);
+  backdrop-filter: blur(12px);
+  padding: 1rem 1rem;
   width: 100%;
-  max-width: 400px;
-}
-
-
-.instruction {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-.instruction p:first-child {
-  margin: 0 0 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #222;
-}
-.instruction p:last-child {
-  margin: 0;
-  font-size: 1.2rem;
-  font-style: italic;
-  color: #666;
-}
-
-/* zelený header s gradientom */
-.cardHeader {
-  background: none;
-  color: #ffffff;
-  padding: 1.5rem 1rem;
-  text-align: center;
-}
-
-.cardHeader h1 {
-  margin: 0;
-  font-size: 1.6rem;
-}
-
-.cardHeader span {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  margin-left: 0.5rem;
-}
-
-/* telo karty: play button, options, feedback, progress */
-.cardBody {
-  background-color: #ffffff;
-  padding: 1.2rem 1rem;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
 }
 
-/* drobné úpravy už existujúcich komponent */
-.feedback {
-  margin-top: 0.5rem;
-  font-size: 1.1rem;
+.instruction p:first-child {
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
   font-weight: 600;
-  color: #d9534f;
-  min-height: 1.5rem;
+  color: #222;
+  text-align: center;
+}
+.instruction p:last-child {
+  margin: 0;
+  font-size: 1rem;
+  font-style: italic;
+  color: #444;
   text-align: center;
 }
 
 .container {
-
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0;
-
-
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  flex-direction: column;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  position: relative;
+  margin: 1.5rem 0;
 }
 
-h1 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  text-align: center;
-  font-weight: 700;
-  color: #222;
-}
-h1 span {
-  font-size: 1.2rem;
-  color: #000000;
-  margin-left: 0.5rem;
-}
-
-/* ========================
-   Feedback text
-   ======================== */
-.feedback {
-  margin-top: 0.8rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #d9534f; /* red */
-  min-height: 1.5rem;
-  text-align: center;
-}
-
-/* ========================
-   Play Button
-   ======================== */
 .playButton {
-  /* base look from first file */
-  background-color: #022f1f;
-  color: white;
+  background: var(--clr-primary);
+  color: #fff;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  /* sizing from first file */
-  font-size: 1.1rem;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-
-  /* overrides & extras from second file */
-  font-size: 1.75rem;       /* bump up */
-  padding: 1.5rem 3rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 3px 6px rgb(0 0 0 / 0.2);
-  width: 100%;
-  max-width: 300px;
-  text-align: center;
-}
-
-
-/* ========================
-   Answer Options
-   ======================== */
-.options {
+  border-radius: 10%;
+  width: 8rem;
+  height: 6rem;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  max-width: 300px;
-  margin-bottom: 2rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.option {
-   background: #DDEAC1;
-  border: none;
-  border-radius: 100px;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-
-  padding: 1rem;
-  font-size: 1.15rem;
-  cursor: pointer;
-  transition: background-color 0.25s ease;
-
-  width: 100%;
-  text-align: center;
+.playButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
