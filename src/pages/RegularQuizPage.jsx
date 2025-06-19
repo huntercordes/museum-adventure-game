@@ -33,19 +33,18 @@ const RegularQuizPage = () => {
     if (option === quizData[currentQuestion].answer) {
       setScore(prev => prev + 1);
       setFeedback("✅ Correct!");
+      setTimeout(() => {
+        if (currentQuestion < quizData.length - 1) {
+          setCurrentQuestion(prev => prev + 1);
+          setSelected(null);
+          setFeedback('');
+        } else {
+          navigate('/');
+        }
+      }, 1000);
     } else {
       setFeedback("❌ Try again!");
     }
-
-    setTimeout(() => {
-      if (currentQuestion < quizData.length - 1) {
-        setCurrentQuestion(prev => prev + 1);
-        setSelected(null);
-        setFeedback('');
-      } else {
-        navigate('/');
-      }
-    }, 1000);
   };
 
   return (
