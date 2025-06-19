@@ -9,7 +9,8 @@
 
 .filled {
   height: 100%;
-  background-color: #007bff;
+
+  background-color: #022f1f;
   transition: width 0.3s ease;
   border-radius: 8px 0 0 8px;
 }

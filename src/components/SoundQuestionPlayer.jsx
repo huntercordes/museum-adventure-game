@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import styles from '../styles/SoundQuestionPlayer.module.css';
+import styles from '../styles/SoundGamePage.module.css';
 
 export default function SoundQuestionPlayer({ soundUrl, onPlayClick }) {
   const audioRef = useRef(null);
@@ -15,7 +15,7 @@ export default function SoundQuestionPlayer({ soundUrl, onPlayClick }) {
     <div className={styles.container}>
       <audio ref={audioRef} src={soundUrl} />
       <button className={styles.playButton} onClick={handlePlay}>
-        ▶️ Play Janek Sound
+        ▶
       </button>
     </div>
   );

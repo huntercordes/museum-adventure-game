@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import SoundQuestionPlayer from '../components/SoundQuestionPlayer';
 import AnswerOptions from '../components/AnswerOptions';
 import ProgressBar from '../components/ProgressBar';
@@ -8,7 +7,6 @@ import BackButton from '../components/BackButton';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from '../hooks/useAuth';
-
 import styles from '../styles/SoundGamePage.module.css';
 
 const soundData = [
@@ -43,19 +41,8 @@ export default function SoundGamePage() {
 
   useEffect(() => {
     if (!user) return;
-
-    const updateProgressInDb = async () => {
-      const userDocRef = doc(db, 'users', user.uid);
-      try {
-        await updateDoc(userDocRef, {
-          'progress.sound': progress,
-        });
-      } catch (error) {
-        console.error('Error updating progress:', error);
-      }
-    };
-
-    updateProgressInDb();
+    const userDocRef = doc(db, 'users', user.uid);
+    updateDoc(userDocRef, { 'progress.sound': progress }).catch(console.error);
   }, [progress, user]);
 
   const handlePlay = () => {
@@ -66,13 +53,12 @@ export default function SoundGamePage() {
     setSelected(option);
     if (option === soundData[current].answer) {
       setFeedback('Correct!');
-      const newProgress = progress + 1;
-      setProgress(newProgress);
+      setProgress((p) => p + 1);
       if (current < soundData.length - 1) {
         setTimeout(() => {
-          setCurrent(current + 1);
-          setFeedback('');
+          setCurrent((c) => c + 1);
           setSelected(null);
+          setFeedback('');
         }, 1000);
       }
     } else {
@@ -81,15 +67,42 @@ export default function SoundGamePage() {
   };
 
   return (
-    <div className={styles.container}>
-      <BackButton onClick={() => navigate('/story-game')} />
-      <h1>
-        {soundData[current].question} <span>{progress}/3 🔊</span>
-      </h1>
-      <SoundQuestionPlayer soundUrl={soundData[current].sound} onPlayClick={handlePlay} />
-      <AnswerOptions options={soundData[current].options} selected={selected} onSelect={handleAnswer} />
-      {feedback && <p className={styles.feedback}>{feedback}</p>}
-      <ProgressBar current={progress} total={soundData.length} />
+    <div className={styles.pageContainer}>
+      {/* Otázka na zelenom gradiente */}
+      <div className={styles.header}>
+        <h1>
+          {soundData[current].question}
+          <span>{progress}/{soundData.length}</span>
+        </h1>
+      </div>
+
+      {/* Biela karta */}
+      <div className={styles.card}>
+        <BackButton onClick={() => navigate('/story-game')} />
+
+        <div className={styles.cardBody}>
+          {/* Nový text v karte */}
+          <div className={styles.instruction}>
+            <p>Can you guess who made that noise?</p>
+            <p>Tap here to play sound</p>
+          </div>
+
+          <SoundQuestionPlayer
+            soundUrl={soundData[current].sound}
+            onPlayClick={handlePlay}
+          />
+
+          <AnswerOptions
+            options={soundData[current].options}
+            selected={selected}
+            onSelect={handleAnswer}
+          />
+
+          {feedback && <p className={styles.feedback}>{feedback}</p>}
+
+          <ProgressBar current={progress} total={soundData.length} />
+        </div>
+      </div>
     </div>
   );
 }

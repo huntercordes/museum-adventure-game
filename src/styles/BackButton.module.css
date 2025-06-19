@@ -1,19 +1,27 @@
+/* backButton.css */
+:root {
+  /* core colors */
+  --deep-green: #00382E;
+  --white:      #FFFFFF;
+}
+
 .backButton {
   position: fixed;
   top: 20px;
   left: 20px;
-  background-color: #007bff;
-  color: white;
+  z-index: 1000;
+
+  background: var(--deep-green);
+  color: var(--white);
   border: none;
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgb(0 0 0 / 0.2);
-  transition: background-color 0.3s ease;
-  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
 }
 
 .backButton:hover {
-  background-color: #0056b3;
+  background: #00291f;
 }

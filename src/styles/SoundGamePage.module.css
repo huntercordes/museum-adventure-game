@@ -1,10 +1,115 @@
-.container {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+
+.pageContainer {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 10vh;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #DDEAC1 ;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+}
+
+
+.header {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+.header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+.header span {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  margin-left: 0.5rem;
+}
+
+/* biely box s tieňom */
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+}
+
+
+.instruction {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.instruction p:first-child {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #222;
+}
+.instruction p:last-child {
+  margin: 0;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #666;
+}
+
+/* zelený header s gradientom */
+.cardHeader {
+  background: none;
+  color: #ffffff;
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.cardHeader h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.cardHeader span {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-left: 0.5rem;
+}
+
+/* telo karty: play button, options, feedback, progress */
+.cardBody {
+  background-color: #ffffff;
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* drobné úpravy už existujúcich komponent */
+.feedback {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #d9534f;
+  min-height: 1.5rem;
+  text-align: center;
+}
+
+.container {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+
+
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  flex-direction: column;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
 }
@@ -16,34 +121,44 @@ h1 {
   font-weight: 700;
   color: #222;
 }
-
 h1 span {
   font-size: 1.2rem;
-  color: #007bff;
+  color: #000000;
   margin-left: 0.5rem;
 }
 
+/* ========================
+   Feedback text
+   ======================== */
 .feedback {
   margin-top: 0.8rem;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #d9534f; /* red for feedback */
+  color: #d9534f; /* red */
   min-height: 1.5rem;
   text-align: center;
 }
 
-/* Back button styles replaced by BackButton component CSS */
-
-/* SoundQuestionPlayer styles */
+/* ========================
+   Play Button
+   ======================== */
 .playButton {
-  background-color: #007bff;
+  /* base look from first file */
+  background-color: #022f1f;
   color: white;
   border: none;
-  border-radius: 8px;
-  padding: 1rem 2rem;
-  font-size: 1.25rem;
   cursor: pointer;
-  transition: background-color 0.25s ease;
+  transition: background-color 0.3s ease;
+
+  /* sizing from first file */
+  font-size: 1.1rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+
+  /* overrides & extras from second file */
+  font-size: 1.75rem;       /* bump up */
+  padding: 1.5rem 3rem;
+  border-radius: 8px;
   margin-bottom: 1.5rem;
   box-shadow: 0 3px 6px rgb(0 0 0 / 0.2);
   width: 100%;
@@ -51,11 +166,10 @@ h1 span {
   text-align: center;
 }
 
-.playButton:hover {
-  background-color: #0056b3;
-}
 
-/* AnswerOptions container styling */
+/* ========================
+   Answer Options
+   ======================== */
 .options {
   display: flex;
   flex-direction: column;
@@ -64,54 +178,17 @@ h1 span {
   max-width: 300px;
   margin-bottom: 2rem;
 }
-
-/* Individual option buttons */
 .option {
-  background-color: #e0e0e0;
+   background: #DDEAC1;
   border: none;
-  border-radius: 8px;
+  border-radius: 100px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+
   padding: 1rem;
   font-size: 1.15rem;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
   transition: background-color 0.25s ease;
+
   width: 100%;
   text-align: center;
-}
-
-.option:hover {
-  background-color: #c0c0c0;
-}
-
-.selected {
-  background-color: #007bff;
-  color: white;
-  font-weight: 700;
-}
-
-/* Progress bar container */
-.progressBar {
-  width: 100%;
-  max-width: 320px;
-  height: 14px;
-  background-color: #e0e0e0;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-bottom: 2rem;
-  box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.1);
-}
-
-/* Progress bar filled part */
-.filler {
-  height: 100%;
-  background-color: #007bff;
-  transition: width 0.3s ease;
-  border-radius: 8px 0 0 8px;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .container {
-    max-width: 90%;
-  }
 }
