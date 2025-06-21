@@ -83,7 +83,7 @@ export default function NameGamePage() {
       <p className={styles.message}>{message}</p>
 
       {progress >= animalTargets.length && (
-        <button className={styles.button} onClick={() => navigate('/story-game')}>
+        <button className={styles.button} onClick={() => navigate('/story')}>
           Return to Main Page
         </button>
       )}

@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BiomesPage from './pages/BiomesPage';
 import BottomNavbar from './components/BottomNavBar';
+import NameGamePage from './pages/NameGamePage';
 import StoryGamePage from './pages/StoryGamePage';
 import SoundGamePage from './pages/SoundGamePage';
 import RegularQuizPage from './pages/RegularQuizPage';
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<BiomesPage />} />
           <Route path="/story" element={<StoryGamePage />} />
           <Route path="/story-game/sound" element={<SoundGamePage />} />
+          <Route path="/story-game/name" element={<NameGamePage />} />
           <Route path="/regular-quiz" element={<RegularQuizPage />} />
          
         </Routes>
