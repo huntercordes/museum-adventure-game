@@ -4,27 +4,30 @@ import SoundQuestionPlayer from '../components/SoundQuestionPlayer';
 import AnswerOptions from '../components/AnswerOptions';
 import ProgressBar from '../components/ProgressBar';
 import BackButton from '../components/BackButton';
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from '../hooks/useAuth';
 import styles from '../styles/SoundGamePage.module.css';
+import lionSound from '../assets/Lion.mp3';
+import monkeySound from '../assets/Monkey.mp3';
+
 
 const soundData = [
   {
     question: 'Which animal makes this sound?',
-    sound: '/sounds/lion.mp3',
+    sound: lionSound,
     options: ['Elephant', 'Lion', 'Monkey'],
     answer: 'Lion',
   },
   {
     question: 'Which animal makes this sound?',
-    sound: '/sounds/elephant.mp3',
+    sound: monkeySound,
     options: ['Lion', 'Elephant', 'Zebra'],
     answer: 'Elephant',
   },
   {
     question: 'Which animal makes this sound?',
-    sound: '/sounds/monkey.mp3',
+    sound: monkeySound,
     options: ['Giraffe', 'Monkey', 'Tiger'],
     answer: 'Monkey',
   },
@@ -38,12 +41,39 @@ export default function SoundGamePage() {
   const [progress, setProgress] = useState(0);
   const [selected, setSelected] = useState(null);
   const [feedback, setFeedback] = useState('');
+  const [storedProgress, setStoredProgress] = useState(0); // track stored progress
 
+  // Load existing progress on mount
   useEffect(() => {
     if (!user) return;
-    const userDocRef = doc(db, 'users', user.uid);
-    updateDoc(userDocRef, { 'progress.sound': progress }).catch(console.error);
-  }, [progress, user]);
+
+    const fetchProgress = async () => {
+      try {
+        const userDocRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(userDocRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          const soundProg = data.progress?.sound || 0;
+          setProgress(soundProg);
+          setStoredProgress(soundProg);
+          setCurrent(soundProg < soundData.length ? soundProg : soundData.length - 1);
+        }
+      } catch (error) {
+        console.error('Error loading progress:', error);
+      }
+    };
+    fetchProgress();
+  }, [user]);
+
+  // Update Firestore only if progress increased
+  useEffect(() => {
+    if (!user) return;
+    if (progress > storedProgress) {
+      const userDocRef = doc(db, 'users', user.uid);
+      updateDoc(userDocRef, { 'progress.sound': progress }).catch(console.error);
+      setStoredProgress(progress);
+    }
+  }, [progress, storedProgress, user]);
 
   const handlePlay = () => {
     new Audio(soundData[current].sound).play();
@@ -52,34 +82,39 @@ export default function SoundGamePage() {
   const handleAnswer = (option) => {
     setSelected(option);
     if (option === soundData[current].answer) {
-      setFeedback('Correct!');
-      setProgress((p) => p + 1);
+      setFeedback('✅ Correct!');
+      const nextProgress = current + 1;
+      setProgress(nextProgress);
+
       if (current < soundData.length - 1) {
         setTimeout(() => {
-          setCurrent((c) => c + 1);
+          setCurrent(nextProgress);
           setSelected(null);
           setFeedback('');
         }, 1000);
+      } else {
+        setTimeout(() => {
+          navigate('/story-game'); // Or wherever the user should go after finishing
+        }, 1000);
       }
     } else {
-      setFeedback('Try again!');
+      setFeedback('❌ Try again!');
     }
   };
 
   return (
     <div className={styles.pageContainer}>
-      {/* Move BackButton here so it’s outside the frosted card */}
-      <BackButton onClick={() => navigate('/story-game')} />
+      <BackButton onClick={() => navigate('/story')} />
 
-      {/* Header */}
       <div className={styles.header}>
         <h1>
           {soundData[current].question}
-          <span>{progress}/{soundData.length}</span>
+          <span>
+            {progress}/{soundData.length}
+          </span>
         </h1>
       </div>
 
-      {/* Frosted-glass card */}
       <div className={styles.card}>
         <div className={styles.instruction}>
           <p>Can you guess who made that noise?</p>

@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('../assets/background.png') no-repeat center;
+    background-size: cover;
+
+  font-family: sans-serif;  /* match profile */
+  padding: 1rem;             /* add some breathing room */
+}
+
+.card {
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: 12px;       /* similar rounding as profile */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;          /* keep form a comfortable width */
+}
+
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: green;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: green;
+}
+
+.error {
+  color: red;
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+}

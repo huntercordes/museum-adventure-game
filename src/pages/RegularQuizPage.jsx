@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/RegularQuizPage.module.css';
-
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 
 const quizData = [
   {
@@ -27,19 +28,57 @@ const RegularQuizPage = () => {
   const [score, setScore] = useState(0);
   const [selected, setSelected] = useState(null);
   const [feedback, setFeedback] = useState('');
+  const [userProgress, setUserProgress] = useState(0);
 
-  const handleAnswer = (option) => {
+  // Load existing progress from Firestore
+  useEffect(() => {
+    const fetchUserProgress = async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+      const docRef = doc(db, 'users', user.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setUserProgress(data.progress?.quiz || 0);
+      }
+    };
+    fetchUserProgress();
+  }, []);
+
+  // Calculate progress percentage for the progress bar
+  const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+
+  const handleAnswer = async (option) => {
     setSelected(option);
     if (option === quizData[currentQuestion].answer) {
       setScore(prev => prev + 1);
       setFeedback("✅ Correct!");
+
+      // Update Firestore if new progress is greater than stored
+      try {
+        const user = auth.currentUser;
+        if (user) {
+          const docRef = doc(db, 'users', user.uid);
+
+          const newProgress = currentQuestion + 1;
+          if (newProgress > userProgress) {
+            await updateDoc(docRef, {
+              'progress.quiz': newProgress,
+            });
+            setUserProgress(newProgress);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to update progress:', error);
+      }
+
       setTimeout(() => {
         if (currentQuestion < quizData.length - 1) {
           setCurrentQuestion(prev => prev + 1);
           setSelected(null);
           setFeedback('');
         } else {
-          navigate('/');
+          navigate('/story'); // or wherever next
         }
       }, 1000);
     } else {
@@ -49,6 +88,14 @@ const RegularQuizPage = () => {
 
   return (
     <div className={styles['quiz-container']}>
+      {/* Progress Bar */}
+      <div className={styles.progressBarOuter}>
+        <div
+          className={styles.progressBarInner}
+          style={{ width: `${progressPercent}%` }}
+        />
+      </div>
+
       <h1 className={styles['quiz-question']}>
         {quizData[currentQuestion].question}
       </h1>
