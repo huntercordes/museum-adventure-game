@@ -13,11 +13,11 @@ const ClueButton = ({ type, progress, icon, biome, onClick }) => {
   const getLabel = () => {
     switch (type) {
       case 'name':
-        return 'Name';
+        return 'Show the Animal';
       case 'quiz':
-        return 'Fun Facts ';
+        return 'Fun Facts Quiz ';
       case 'sound':
-        return 'Sounds';
+        return 'Sounds of Animals';
       default:
         return 'Clue';
     }

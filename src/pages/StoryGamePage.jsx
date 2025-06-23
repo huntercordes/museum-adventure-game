@@ -90,17 +90,15 @@ const StoryGamePage = () => {
 
       <div className={styles.clueSection}>
         <div className={styles.clueBox}>
-          <ClueButton type="name" progress={progress.name} icon="🌍" />
+          <ClueButton type="name" progress={progress.name} />
           <ClueButton
             type="quiz"
             progress={progress.quiz}
-            icon="❓"
             onClick={() => navigate('/regular-quiz')}
           />
           <ClueButton
             type="sound"
             progress={progress.sound}
-            icon="👥"
             onClick={() => navigate('/story-game/sound')}
           />
         </div>
