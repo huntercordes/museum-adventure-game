@@ -94,7 +94,7 @@ export default function SoundGamePage() {
         }, 1000);
       } else {
         setTimeout(() => {
-          navigate('/story-game'); // Or wherever the user should go after finishing
+          navigate('/story'); // Or wherever the user should go after finishing
         }, 1000);
       }
     } else {
